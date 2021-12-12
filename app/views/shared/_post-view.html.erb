@@ -1,0 +1,24 @@
+<div class="card rounded-0">
+    <!--
+    <img src="..." class="card-img-top" alt="...">
+    -->
+    <div class="card-body">
+        <div class="d-flex">
+            <a href="/<%= post.user.username %>" class="text-black">
+                <div class="card-title">
+                    <%= post.user.name %>
+                    <span class="text-muted">@<%= post.user.username %></span>
+                </div>
+            </a>
+            <span class="text-muted">
+                &nbsp;·&nbsp;
+                <% if post.created_at > 24.hours.ago %>
+                    <%= distance_of_time_in_words(post.created_at, Time.now) %>
+                <% else %>
+                    <%= post.created_at.strftime("%b %d") %>
+                <% end %>
+            </span>
+        </div>
+        <p class="card-text"><%= post.content %></p>
+    </div>
+</div>

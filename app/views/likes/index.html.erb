@@ -1,0 +1,6 @@
+<div class="card">
+    <h2 class="px-3">Likes</h2>
+</div>
+<% @posts.each do |post_content| %>
+  <%= render '/shared/post', post_content: post_content %>
+<% end %>

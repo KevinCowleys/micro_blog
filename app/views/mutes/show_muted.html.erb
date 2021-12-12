@@ -1,0 +1,28 @@
+<div class="card">
+    <h2 class="px-3">Mutes</h2>
+</div>
+<% @mutes&.each do |muted| %>
+    <div>
+        <% @user = User.find(muted.muted_id) %>
+        <a href="/<%= @user.username %>" class="list-group-item list-group-item-action border-1">
+            <div class="d-flex align-items-start user-img">
+                <% if @user.profile_image.attached? %>
+                    <%= image_tag @user.profile_image, class: 'message-img-user me-2' %>
+                <% else %>
+                    <%= image_tag "profile_image.png", class: 'message-img-user me-2' %>
+                <% end %>
+                <div class="flex-grow-1 ml-3">
+                    <span>
+                        <%= @user.name %>
+                    </span>
+                    <span style="float: right;">
+                        <%= time_ago_in_words muted.created_at %> ago
+                    </span>
+                    <div class="small">
+                        @<%= @user.username %>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+<% end %>

@@ -1,0 +1,32 @@
+<div class="card">
+    <h2 class="px-3">Messages</h2>
+</div>
+<% @conversations.each do |conversation| %>
+    <% if conversation.sender_id == Current.user.id || conversation.recipient_id == Current.user.id %>
+        <% if conversation.sender_id == Current.user.id %>
+            <% recipient = User.find(conversation.recipient_id) %>
+        <% else %>
+            <% recipient = User.find(conversation.sender_id) %>
+        <% end %>
+        <a href="<%= conversation_messages_path(conversation) %>" class="list-group-item list-group-item-action border-1">
+            <div class="d-flex align-items-start">
+                <% if recipient.profile_image.attached? %>
+                    <%= image_tag recipient.profile_image, class: 'message-img-user me-2' %>
+                <% else %>
+                    <%= image_tag "profile_image.png", class: 'message-img-user me-2' %>
+                <% end %>
+                <div class="flex-grow-1 ml-3">
+                    <span>
+                        <%= recipient.name %>
+                    </span>
+                    <span style="float: right;">
+                        <%= time_ago_in_words conversation.updated_at %> ago
+                    </span>
+                    <div class="small">
+                        @<%= recipient.username %>
+                    </div>
+                </div>
+            </div>
+        </a>
+    <% end %>
+<% end %>

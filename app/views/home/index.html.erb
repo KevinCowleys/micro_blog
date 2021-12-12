@@ -1,0 +1,13 @@
+<div class="card">
+  <h2 class="px-3">Home</h2>
+</div>
+
+<% if Current.user %>
+    <div id="user-posts" class="mb-3">
+      <%= render '/shared/form' %>
+    </div>
+<% end %>
+
+<% @posts.each do |post_content| %>
+  <%= render '/shared/post', post_content: post_content %>
+<% end %>

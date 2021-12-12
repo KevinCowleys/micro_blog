@@ -1,0 +1,47 @@
+// Place all the styles related to the profile controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+#main .card:first-child {
+    border-top: 0 !important;
+}
+
+.user-bio {
+    white-space: break-spaces;
+}
+
+.user-extra span svg,
+.user-extra a svg {
+    fill: #6c757d !important;
+    height: 1.25em;
+    width: 1.25em;
+}
+
+.profile-button {
+    margin-right: 1.25rem;
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem
+}
+
+.profile-banner {
+    width: 100%;
+    min-height: 200px;
+    max-height: 350px;
+}
+
+.pro-img {
+    margin-top: -80px;
+    margin-bottom: 10px
+}
+
+.little-profile .pro-img img {
+    width: 128px;
+    height: 128px;
+    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 100%
+}

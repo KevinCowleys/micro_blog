@@ -1,0 +1,78 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.website-content {
+    display: grid;
+    grid-template-columns: 1fr 750px 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px; 
+}
+.profile-more-button {
+    border: solid black 1px; content: '';
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+}
+.profile-more-button:after {
+    content: unset;
+}
+.active-link {
+    font-weight: 800;
+}
+
+.active-link > svg,
+.nav-link > span > svg {
+    display: none;
+}
+.active-link > span > svg {
+    display: inline;
+}
+.like-button:hover .shadow-hover {
+    background: rgba(249, 24, 128, 0.1);
+}
+.save-button:hover .shadow-hover {
+    background: rgba(29, 155, 240, 0.1);
+}
+.like-button:hover {
+    color: rgb(249, 24, 128);
+}
+.save-button:hover {
+    color: rgb(29, 155, 240);
+}
+.shadow-hover {
+    border-radius: 30px;
+    margin: -8px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.message-user-img {
+  display: flex;
+  justify-content: center;
+//   align-items: center;
+}
+
+.message-img-user {
+    width: 48px;
+    height: 48px;
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 100%;
+}
+
+.user-img img {
+    width: 48px;
+    height: 48px;
+    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 100%;
+}
+
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:active { text-decoration: underline; }

@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="messages">
+            <% @messages.each do |message| %>
+                <% if message.content %>
+                    <% user = User.find(message.user_id) %>
+                        <div class="nearby-user">
+                            <div class="row">
+                                <div class="col-md-2 col-sm-2 message-user-img">
+                                    <div>
+                                        <% if user.profile_image.attached? %>
+                                            <%= image_tag user.profile_image, class: 'message-img-user me-2' %>
+                                        <% else %>
+                                            <%= image_tag "profile_image.png", class: 'message-img-user me-2' %>
+                                        <% end %>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-sm-7">
+                                    <h5><a href="/<%= user.username %>" class="profile-link"><%= user.username %></a></h5>
+                                    <p><%= message.content %></p>
+                                </div>
+                            </div>
+                        </div>
+                <% end %>
+            <% end %>
+        </div>
+	</div>
+</div>
+
+<div>
+<%= form_for [@conversation, @message], html: { class: "my-4" } do |f| %>
+    <div class="form-group">
+        <%= f.text_area :content, placeholder: 'Enter your message', class: 'form-control', rows: 3 %>
+    </div>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <div class="actions">
+        <%= f.submit "Send Reply", class: "btn btn-primary" %>
+    </div>
+<% end %>
+</div>

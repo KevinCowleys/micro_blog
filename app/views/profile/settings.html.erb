@@ -1,0 +1,65 @@
+<%= form_with model: @user, url: update_settings_path do |f| %>
+    <div class="card" style="border: 0 !important;">
+        <label>
+            <% if @user.profile_banner.attached? %>
+                <%= image_tag @user.profile_banner, class: 'profile-banner' %>
+            <% else %>
+                <%= image_tag 'profile_banner.png', class: 'profile-banner' %>
+            <% end %>
+            <%= f.file_field :profile_banner, class: 'd-none' %>
+        </label>
+        <div class="card-body little-profile">
+            <div class="pro-img">
+                <label>
+                    <% if @user.profile_image.attached? %>
+                        <%= image_tag @user.profile_image %>
+                        <%= f.file_field :profile_image, class: 'd-none' %>
+                    <% else %>
+                        <%= image_tag 'profile_image.png' %>
+                        <%= f.file_field :profile_image, class: 'd-none' %>
+                    <% end %>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="mb-2">
+        <%= f.label 'Name', class: 'form-label' %><br>
+        <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="mb-2">
+        <%= f.label 'Username', class: 'form-label' %><br>
+        <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">@</span>
+            <%= f.text_field :username, class: 'form-control' %>
+        </div>
+    </div>
+    <div class="mb-2">
+        <%= f.label 'Bio', class: 'form-label' %><br>
+        <%= f.text_area :bio, class: 'form-control' %>
+    </div>
+    <div class="mb-2">
+        <%= f.label 'Location', class: 'form-label' %><br>
+        <%= f.text_field :location, class: 'form-control' %>
+    </div>
+    <div class="mb-2">
+        <%= f.label 'Website', class: 'form-label' %><br>
+        <%= f.text_field :website, class: 'form-control' %>
+    </div>
+    <div class="mb-2">
+        <%= f.label 'Email', class: 'form-label' %><br>
+        <%= f.text_field :email, class: 'form-control' %>
+    </div>
+    <div class="mt-3">
+        <%= f.submit 'Save', class: 'btn btn-primary mb-3' %>
+    </div>
+<% end %>
+
+<div>
+    <%= link_to 'Edit Password', edit_password_path %>
+</div>
+<div>
+    <%= link_to 'View Blocked Accounts', settings_blocks_path %>
+</div>
+<div>
+    <%= link_to 'View Muted Accounts', settings_mutes_path %>
+</div>

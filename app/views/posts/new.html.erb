@@ -1,0 +1,11 @@
+<% if Current.user %>
+    <div class="mb-3">
+        <%# <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label> %>
+        <%= form_for model: @post, url: '/create_post' do |f| %>
+        <%# <%= f.text_field :content %> %>
+        <textarea name="user_id" value="<%= Current.user.id %>"></textarea>
+        <textarea class="form-control" id="content" name="content" rows="3" placeholder="What's happening?" maxlength=256></textarea>
+        <%= f.submit 'Post' %>
+        <% end %>
+    </div>
+<% end %>

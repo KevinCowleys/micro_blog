@@ -1,0 +1,37 @@
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Share
+    </button>
+    <ul class="dropdown-menu">
+        <li>
+            <%= form_with model: @post_shares, url: share_post_path do |f| %>
+                <%= f.hidden_field :post_id, value: post.id  %>
+                <% if PostLike.find_by(user_id: current_user, post_id: post.id) %>
+                    <%= f.submit 'Like ' + post.post_likes.count.to_s %>
+                <% else %>
+                    <%= f.submit 'Share' %>
+                <% end %>
+            <% end %>
+        </li>
+        <li>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= post.id %>">
+                Share with comment
+            </button>
+        </li>
+    </ul>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal-<%= post.id %>" tabindex="-1" aria-labelledby="exampleModalLabel-<%= post.id %>" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel-<%= post.id %>">Share</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <%= render '/shared/form-share', post: post %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

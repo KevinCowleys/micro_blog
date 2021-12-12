@@ -1,0 +1,9 @@
+<%= form_with model: @post_shares, local: true, html: { class: "my-4" }, url: share_post_path do |f| %>
+    <div class="form-group">
+        <%= f.text_area :content, placeholder: "Enter your message", class: "form-control", rows: 3 %>
+    </div>
+    <%= render '/shared/post-view', post: post %>
+    <div class="actions modal-footer">
+        <%= f.submit class: "btn btn-primary" %>
+    </div>
+<% end %>
