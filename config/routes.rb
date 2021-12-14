@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   # patch 'password/reset/edit', to: 'password_resets#update'
 
   # Post routes
-  get ':username/status/:id', to: 'posts#show'
+  get ':username/status/:id', to: 'posts#show', username: %r{[^/]+}
   delete 'post/:id', to: 'posts#destroy', as: :post
   post 'create_post', to: 'posts#create'
   post 'like_post', to: 'posts#like'
@@ -32,26 +32,26 @@ Rails.application.routes.draw do
   end
 
   # Follower routes
-  get ':username/following', to: 'followers#show_following'
-  get ':username/followers', to: 'followers#show_followers'
-  post ':username/follow', to: 'followers#create', as: :follow_user
+  get ':username/following', to: 'followers#show_following', username: %r{[^/]+}
+  get ':username/followers', to: 'followers#show_followers', username: %r{[^/]+}
+  post ':username/follow', to: 'followers#create', username: %r{[^/]+}, as: :follow_user
 
   # Block routes
   get 'profile/settings/blocked', to: 'blocks#show_blocked', as: :settings_blocks
-  post ':username/block', to: 'blocks#create', as: :block_user
+  post ':username/block', to: 'blocks#create', username: %r{[^/]+}, as: :block_user
 
   # Mute routes
   get 'profile/settings/muted', to: 'mutes#show_muted', as: :settings_mutes
-  post ':username/mute', to: 'mutes#create', as: :mute_user
+  post ':username/mute', to: 'mutes#create', username: %r{[^/]+}, as: :mute_user
 
   # Like routes
-  get ':username/likes', to: 'likes#index', as: :likes
+  get ':username/likes', to: 'likes#index', username: %r{[^/]+}, as: :likes
 
   # Save routes
-  get ':username/saves', to: 'saves#index', as: :saves
+  get ':username/saves', to: 'saves#index', username: %r{[^/]+}, as: :saves
 
   # Profile routes
-  get ':username', to: 'profile#index', as: :profile
+  get ':username', to: 'profile#index', username: %r{[^/]+}, as: :profile
   get 'profile/settings', to: 'profile#settings', as: :settings
   patch 'profile/settings', to: 'profile#update_settings', as: :update_settings
 end
