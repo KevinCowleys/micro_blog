@@ -7,29 +7,31 @@
         <% end %>
         <div class="card-body little-profile">
             <div class="position-absolute end-0 profile-button">
-                <% if @user.id == Current.user.id  %>
+                <% if Current.user && @user.id == Current.user.id  %>
                     <%= link_to 'Settings', settings_path, class: 'ml-auto waves-effect waves-dark btn btn-primary btn-md btn-rounded' %>
                 <% else %>
-                <span class="dropdown ms-auto">
-                    <button class="btn dropdown-toggle profile-more-button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <svg viewBox="0 0 24 24" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1hdv0qi"><g><circle cx="5" cy="12" r="2"></circle><circle cx="12" cy="12" r="2"></circle><circle cx="19" cy="12" r="2"></circle></g></svg>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-lg-end">
-                        <li>
-                            <% if @is_blocked %>
-                                <%= link_to 'Unblock', block_user_path, method: 'post', class: 'd-block px-2' %>
-                            <% else %>
-                                <%= link_to 'Block', block_user_path, method: 'post', class: 'd-block px-2' %>
-                            <% end %>
-                            <% if @is_muted %>
-                                <%= link_to 'Unmute', mute_user_path, method: 'post', class: 'd-block px-2' %>
-                            <% else %>
-                                <%= link_to 'Mute', mute_user_path, method: 'post', class: 'd-block px-2' %>
-                            <% end %>
-                        </li>
-                    </ul>
-                </span>
-                    <% if @is_viewable %>
+                <% if Current.user %>
+                    <span class="dropdown ms-auto">
+                        <button class="btn dropdown-toggle profile-more-button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1hdv0qi"><g><circle cx="5" cy="12" r="2"></circle><circle cx="12" cy="12" r="2"></circle><circle cx="19" cy="12" r="2"></circle></g></svg>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-lg-end">
+                            <li>
+                                <% if @is_blocked %>
+                                    <%= link_to 'Unblock', block_user_path, method: 'post', class: 'd-block px-2' %>
+                                <% else %>
+                                    <%= link_to 'Block', block_user_path, method: 'post', class: 'd-block px-2' %>
+                                <% end %>
+                                <% if @is_muted %>
+                                    <%= link_to 'Unmute', mute_user_path, method: 'post', class: 'd-block px-2' %>
+                                <% else %>
+                                    <%= link_to 'Mute', mute_user_path, method: 'post', class: 'd-block px-2' %>
+                                <% end %>
+                            </li>
+                        </ul>
+                    </span>
+                <% end %>
+                    <% if @is_viewable && Current.user %>
                         <%= link_to 'Message', conversations_path(sender_id: Current.user.id, recipient_id: @user.id), method: "post", class: "ml-auto waves-effect waves-dark btn btn-primary btn-md btn-rounded" %>
                         <% if @is_following %>
                             <%= link_to 'Unfollow', follow_user_path, method: "post", class: "ml-auto waves-effect waves-dark btn btn-primary btn-md btn-rounded" %>
