@@ -1,6 +1,8 @@
 class RegistrationsController < ApplicationController
   # instantiates new user
   def new
+    return redirect_to root_path if Current.user
+
     @user = User.new
   end
 
@@ -25,11 +27,9 @@ class RegistrationsController < ApplicationController
 
   def find_unique(username)
     test_username = username
-  
-    while (User.where(username: test_username).any?)
-      test_username = "#{username}#{SecureRandom.rand(10000..99999)}"
-    end
-  
+
+    test_username = "#{username}#{SecureRandom.rand(10_000..99_999)}" while User.where(username: test_username).any?
+
     test_username
-  end  
+  end
 end
