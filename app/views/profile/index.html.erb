@@ -94,6 +94,7 @@
         <% @posts.each do |post_content| %>
             <%= render '/shared/post', post_content: post_content %>
         <% end %>
+        <%== pagy_bootstrap_nav(@pagy) %>
     <% else %>
         <div class="card text-center">
             <h1>You're blocked</h1>

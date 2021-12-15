@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   protect_from_forgery with: :null_session
 
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @pagy, @posts = pagy(Post.all.order(created_at: :desc))
     @post = Current.user.posts.new
   end
 

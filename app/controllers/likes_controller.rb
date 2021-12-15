@@ -2,7 +2,7 @@ class LikesController < ApplicationController
   def index
     @user = User.find_by(username: params[:username])
     @likes = PostLike.where(user_id: @user.id).order(created_at: :desc).pluck(:post_id)
-    @posts = Post.where(id: [@likes]).order(created_at: :desc)
+    @pagy, @posts = pagy(Post.where(id: [@likes]).order(created_at: :desc))
     @is_viewable = true
     return unless Current.user && @user.id == Current.user.id
 

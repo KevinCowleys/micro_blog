@@ -1,7 +1,8 @@
 <div class="container">
     <div class="row">
+        <%== pagy_bootstrap_nav(@pagy) %>
         <div class="messages">
-            <% @messages.each do |message| %>
+            <% @messages.reverse().each do |message| %>
                 <% if message.content %>
                     <% user = User.find(message.user_id) %>
                         <div class="nearby-user">
@@ -25,11 +26,10 @@
             <% end %>
         </div>
 	</div>
-</div>
-
+</div> 
 <div>
 <%= form_for [@conversation, @message], html: { class: "my-4" } do |f| %>
-    <div class="form-group">
+    <div id="new-message" class="form-group">
         <%= f.text_area :content, placeholder: 'Enter your message', class: 'form-control', rows: 3 %>
     </div>
     <%= f.hidden_field :user_id, value: current_user.id %>
@@ -38,3 +38,6 @@
     </div>
 <% end %>
 </div>
+<script>
+    document.getElementById('new-message').scrollIntoView({behavior: 'smooth'});
+</script>

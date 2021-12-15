@@ -1,9 +1,0 @@
-<% if Current.user %>
-    <div class="mb-3">
-        <%= form_with model: @message, url: '/messages' do |f| %>
-            <%= f.hidden_field :recipient_id, value: 2  %>
-            <%= f.text_area :content, placeholder: "Enter your message", class: "form-control", rows: 3 %>
-            <%= f.submit 'Message' %>
-        <% end %>
-    </div>
-<% end %>

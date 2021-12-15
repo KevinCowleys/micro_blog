@@ -19,6 +19,6 @@ class MutesController < ApplicationController
   end
 
   def show_muted
-    @mutes = Mute.all.where(muted_by_id: Current.user.id)
+    @pagy, @mutes = pagy(Mute.all.where(muted_by_id: Current.user.id))
   end
 end

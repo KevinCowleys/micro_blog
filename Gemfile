@@ -25,6 +25,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'active_link_to'
 gem 'faker'
 # gem 'fast_jsonapi'
+gem 'pagy', '~> 5.6'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

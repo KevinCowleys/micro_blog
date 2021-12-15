@@ -25,6 +25,6 @@ class BlocksController < ApplicationController
   end
 
   def show_blocked
-    @blocks = Block.all.where(blocked_by_id: Current.user.id)
+    @pagy, @blocks = pagy(Block.all.where(blocked_by_id: Current.user.id))
   end
 end

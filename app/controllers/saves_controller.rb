@@ -4,7 +4,7 @@ class SavesController < ApplicationController
     return redirect_to "/#{params[:username]}" unless Current.user && @user.id == Current.user.id
 
     @saves = PostSaved.where(user_id: @user.id).order(created_at: :desc).pluck(:post_id)
-    @posts = Post.where(id: [@saves]).order(created_at: :desc)
+    @pagy, @posts = pagy(Post.where(id: [@saves]).order(created_at: :desc))
 
     @post_likes = Current.user.post_likes.new
     @post_saved = Current.user.post_saved.new

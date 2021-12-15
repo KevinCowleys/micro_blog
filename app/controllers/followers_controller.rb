@@ -19,12 +19,12 @@ class FollowersController < ApplicationController
 
   def show_following
     @user = User.find_by(username: params[:username])
-    @following = Follower.all.where(follower_id: @user.id)
+    @pagy, @following = pagy(Follower.all.where(follower_id: @user.id))
   end
 
   def show_followers
     # abort params[:username].inspect
     @user = User.find_by(username: params[:username])
-    @followers = Follower.all.where(following_id: @user.id)
+    @pagy, @followers = pagy(Follower.all.where(following_id: @user.id))
   end
 end

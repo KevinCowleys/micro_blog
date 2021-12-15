@@ -3,7 +3,7 @@ class ProfileController < ApplicationController
     @user = User.find_by(username: params[:username])
     return unless @user
 
-    @posts = Post.where(user_id: @user.id).order(created_at: :desc)
+    @pagy, @posts = pagy(Post.where(user_id: @user.id).order(created_at: :desc))
     @is_viewable = true
     return unless Current.user
 

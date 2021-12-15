@@ -3,7 +3,7 @@ class ConversationsController < ApplicationController
 
   def index
     @users = User.all
-    @conversations = Conversation.all.order(updated_at: :desc)
+    @pagy, @conversations = pagy(Conversation.all.order(updated_at: :desc))
   end
 
   def create

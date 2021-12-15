@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   end
 
   def index
-    @messages = @conversation.messages
+    @pagy, @messages = pagy(@conversation.messages.order(created_at: :desc))
     @message = @conversation.messages.new
   end
 
