@@ -145,10 +145,10 @@ ActiveRecord::Schema.define(version: 2021_12_11_213749) do
   add_foreign_key "mutes", "users", column: "muted_by_id"
   add_foreign_key "mutes", "users", column: "muted_id"
   add_foreign_key "post_likes", "posts"
-  add_foreign_key "post_likes", "users"
+  add_foreign_key "post_likes", "posts", column: "user_id"
   add_foreign_key "post_saveds", "posts"
-  add_foreign_key "post_saveds", "users"
+  add_foreign_key "post_saveds", "posts", column: "user_id"
   add_foreign_key "post_shares", "posts"
-  add_foreign_key "post_shares", "users"
+  add_foreign_key "post_shares", "posts", column: "user_id"
   add_foreign_key "posts", "users"
 end

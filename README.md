@@ -82,9 +82,3 @@ New avatar and banner images can be uploaded when clicking the images in the set
 * Sharing
 * Comments
 * Tags
-* Pagination
-
-## Bugs
-
-* Deleting Comments
-

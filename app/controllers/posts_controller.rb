@@ -20,7 +20,8 @@ class PostsController < ApplicationController
   def destroy
     return unless Current.user
 
-    post = Current.user.posts.where(params[:id]).first
+    post = Current.user.posts.find_by(id: params[:id])
+
     return unless Current.user.id == post.user_id
 
     if post.destroy

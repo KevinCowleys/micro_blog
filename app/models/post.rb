@@ -4,6 +4,6 @@ class Post < ApplicationRecord
   # Relationships
   belongs_to :user
   has_many :post_likes, dependent: :delete_all
-  has_many :post_saves, dependent: :delete_all
+  has_many :post_saveds, dependent: :delete_all
   has_many :post_shares, dependent: :delete_all
 end
